@@ -1,7 +1,7 @@
-package totonitos.stock.repositories;
+package gestion.stock.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import totonitos.stock.entities.DetalleVenta;
+import gestion.stock.entities.DetalleVenta;
 
 public interface DetalleVentaRepository extends JpaRepository<DetalleVenta, Long> {
 }

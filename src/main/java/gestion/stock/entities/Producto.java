@@ -1,4 +1,4 @@
-package totonitos.stock.entities;
+package gestion.stock.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

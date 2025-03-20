@@ -1,11 +1,11 @@
-package totonitos.stock.controllers;
+package gestion.stock.controllers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import totonitos.stock.entities.Venta;
-import totonitos.stock.services.VentaServiceImpl;
+import gestion.stock.entities.Venta;
+import gestion.stock.services.VentaServiceImpl;
 
 import java.util.List;
 

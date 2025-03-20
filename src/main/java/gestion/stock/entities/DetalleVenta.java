@@ -1,4 +1,4 @@
-package totonitos.stock.entities;
+package gestion.stock.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -25,7 +25,6 @@ public class DetalleVenta {
 
     private double precioVenta;
 
-    // Método para calcular la ganancia de este detalle
     public double getGanancia() {
         return (precioVenta - producto.getPrecio()) * cantidad;
     }

@@ -1,10 +1,10 @@
-package totonitos.stock.controllers;
+package gestion.stock.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import totonitos.stock.entities.Producto;
-import totonitos.stock.services.ProductoServiceImpl;
+import gestion.stock.entities.Producto;
+import gestion.stock.services.ProductoServiceImpl;
 
 import java.util.List;
 

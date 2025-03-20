@@ -1,4 +1,4 @@
-package totonitos.stock.entities;
+package gestion.stock.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -29,7 +29,6 @@ public class Venta {
     @JsonManagedReference
     private List<DetalleVenta> detalles;
 
-    // Método para calcular la ganancia total de la venta
     public double getGananciaTotal() {
         return detalles.stream()
                 .mapToDouble(DetalleVenta::getGanancia)

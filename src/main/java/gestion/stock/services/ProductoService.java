@@ -1,7 +1,7 @@
-package totonitos.stock.services;
+package gestion.stock.services;
 
 import org.springframework.http.ResponseEntity;
-import totonitos.stock.entities.Producto;
+import gestion.stock.entities.Producto;
 
 import java.util.List;
 

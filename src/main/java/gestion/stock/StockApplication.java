@@ -1,4 +1,4 @@
-package totonitos.stock;
+package gestion.stock;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

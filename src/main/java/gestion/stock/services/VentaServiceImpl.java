@@ -1,15 +1,15 @@
-package totonitos.stock.services;
+package gestion.stock.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import totonitos.stock.entities.DetalleVenta;
-import totonitos.stock.entities.Producto;
-import totonitos.stock.entities.Venta;
-import totonitos.stock.repositories.DetalleVentaRepository;
-import totonitos.stock.repositories.ProductoRepo;
-import totonitos.stock.repositories.VentasRepo;
+import gestion.stock.entities.DetalleVenta;
+import gestion.stock.entities.Producto;
+import gestion.stock.entities.Venta;
+import gestion.stock.repositories.DetalleVentaRepository;
+import gestion.stock.repositories.ProductoRepo;
+import gestion.stock.repositories.VentasRepo;
 
 import java.util.List;
 import java.util.Optional;

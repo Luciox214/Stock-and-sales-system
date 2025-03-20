@@ -1,4 +1,4 @@
-package totonitos.stock;
+package gestion.stock;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
