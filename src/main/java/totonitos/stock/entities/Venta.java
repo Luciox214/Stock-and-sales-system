@@ -23,9 +23,16 @@ public class Venta {
     private String nombre_venta;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date fecha= new Date();
+    private Date fecha = new Date();
 
     @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<DetalleVenta> detalles;
+
+    // Método para calcular la ganancia total de la venta
+    public double getGananciaTotal() {
+        return detalles.stream()
+                .mapToDouble(DetalleVenta::getGanancia)
+                .sum();
+    }
 }

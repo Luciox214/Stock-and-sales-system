@@ -23,5 +23,5 @@ public class Producto {
     private int cantidad;
 
     @NotNull
-    private double precio;  // Costo de producción
+    private double precio;
 }

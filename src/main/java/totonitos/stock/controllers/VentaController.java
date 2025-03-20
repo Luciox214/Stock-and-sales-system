@@ -49,4 +49,15 @@ public class VentaController {
         ResponseEntity<?> response = ventaService.eliminarVenta(id);
         return response;
     }
+
+
+    @GetMapping("/ventas/{id}/ganancia")
+    public ResponseEntity<?> calcularGanancia(@PathVariable Long id) {
+        try {
+            double ganancia = ventaService.calcularGananciaTotal(id);
+            return ResponseEntity.ok(ganancia);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+    }
 }

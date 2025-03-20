@@ -1,6 +1,5 @@
 package totonitos.stock.services;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,6 @@ import totonitos.stock.entities.Venta;
 import totonitos.stock.repositories.DetalleVentaRepository;
 import totonitos.stock.repositories.ProductoRepo;
 import totonitos.stock.repositories.VentasRepo;
-import totonitos.stock.services.VentaService;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +28,6 @@ public class VentaServiceImpl implements VentaService {
 
     @Override
     public ResponseEntity<?> crearVenta(Venta venta) {
-        // Verificar que los productos existan y tengan suficiente stock
         for (DetalleVenta detalle : venta.getDetalles()) {
             Optional<Producto> productoOpt = productoRepository.findById(detalle.getProducto().getId());
             if (productoOpt.isEmpty()) {
@@ -40,17 +37,20 @@ public class VentaServiceImpl implements VentaService {
             if (producto.getCantidad() < detalle.getCantidad()) {
                 return new ResponseEntity<>("Stock insuficiente para el producto: " + producto.getNombre(), HttpStatus.BAD_REQUEST);
             }
+            if (detalle.getPrecioVenta() < producto.getPrecio()) {
+                return new ResponseEntity<>("El precio de venta no puede ser menor al precio de costo para el producto: " + producto.getNombre(), HttpStatus.BAD_REQUEST);
+            }
         }
 
-        // Asignar la venta a cada detalle
+
         for (DetalleVenta detalle : venta.getDetalles()) {
             detalle.setVenta(venta);
         }
 
-        // Guardar la venta (esto guardará también los detalles debido a CascadeType.ALL)
+
         Venta nuevaVenta = ventaRepository.save(venta);
 
-        // Actualizar el stock de los productos
+
         for (DetalleVenta detalle : nuevaVenta.getDetalles()) {
             Producto producto = productoRepository.findById(detalle.getProducto().getId()).get();
             producto.setCantidad(producto.getCantidad() - detalle.getCantidad());
@@ -92,5 +92,17 @@ public class VentaServiceImpl implements VentaService {
         }
         ventaRepository.deleteById(id);
         return new ResponseEntity<>("Venta eliminada con éxito", HttpStatus.OK);
+    }
+
+    // Método para calcular la ganancia total de una venta
+    public double calcularGananciaTotal(Long ventaId) {
+        Optional<Venta> ventaOpt = ventaRepository.findById(ventaId);
+        if (ventaOpt.isEmpty()) {
+            throw new RuntimeException("Venta no encontrada con ID: " + ventaId);
+        }
+        Venta venta = ventaOpt.get();
+        return venta.getDetalles().stream()
+                .mapToDouble(detalle -> (detalle.getPrecioVenta() - detalle.getProducto().getPrecio()) * detalle.getCantidad())
+                .sum();
     }
 }

@@ -21,5 +21,12 @@ public class DetalleVenta {
     @JoinColumn(name = "producto_id", nullable = false)
     private Producto producto;
 
-    private int cantidad;  // Cantidad vendida
+    private int cantidad;
+
+    private double precioVenta;
+
+    // Método para calcular la ganancia de este detalle
+    public double getGanancia() {
+        return (precioVenta - producto.getPrecio()) * cantidad;
+    }
 }
